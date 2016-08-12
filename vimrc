@@ -1,13 +1,12 @@
 " G" Vundle
 set nocompatible              " be iMproved, required
-filetype off                  " required
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'klen/python-mode'
