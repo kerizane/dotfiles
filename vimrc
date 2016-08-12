@@ -2,46 +2,36 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'jnurmine/Zenburn'
+Plugin 'klen/python-mode'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'nvie/vim-flake8'
+Plugin 'scrooloose/syntastic'
+Plugin 'shougo/neocomplete.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tmhedberg/matchit'
-Plugin 'vim-scripts/indentpython.vim'
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Plugin 'nvie/vim-flake8'
-Plugin 'jnurmine/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-sensible'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'shougo/neocomplete.vim'
-Plugin 'klen/python-mode'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
+Plugin 'vim-scripts/indentpython.vim'
+call vundle#end()
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" End Vundle
 
 " Setting some decent VIM settings for programming
 
@@ -155,7 +145,7 @@ endif
 set hlsearch
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType xml setlocal shiftwidth=2 tabstop=2
+autocmd FileType ml xsetlocal shiftwidth=2 tabstop=2
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 nnoremap J mzJ`z
