@@ -25,3 +25,5 @@ for file in $files; do
 done
 
 git clone ssh://git@github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim
+
+git config --global core.editor $(which vim)
