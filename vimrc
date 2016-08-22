@@ -144,7 +144,7 @@ endif
 set hlsearch
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType ml xsetlocal shiftwidth=2 tabstop=2
+autocmd FileType xml setlocal shiftwidth=2 tabstop=2
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 nnoremap J mzJ`z
