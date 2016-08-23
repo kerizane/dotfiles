@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim zshrc"    # list of files/folders to symlink in homedir
+files="bashrc vimrc vim zshrc Xresources"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -24,6 +24,7 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
+xrdb -merge ~/.Xresources
 git clone ssh://git@github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim
 
 git config --global core.editor $(which vim)
