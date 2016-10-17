@@ -33,8 +33,11 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
-" Setting some decent VIM settings for programming
+" turn on undo files, put them in a common location
+set undofile
+set undodir=~/.vim/_undo/
 
+" Setting some decent VIM settings for programming
 set ai                          " set auto-indenting on for programming
 set showmatch                   " automatically show matching brackets. works like it does in bbedit.
 set ruler                       " show the cursor position all the time
@@ -151,3 +154,4 @@ autocmd FileType xml setlocal shiftwidth=2 tabstop=2
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 nnoremap J mzJ`z
 set wildmode=longest:list
+
