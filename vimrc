@@ -155,4 +155,4 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 nnoremap J mzJ`z
 set wildmode=longest:list
 
-map Q <Nop>
+noremap Q <Nop>
