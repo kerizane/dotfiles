@@ -1,0 +1,14 @@
+Cisco-Guid header: How is this header to be populated?
+	UUID
+
+From Header 
+x-refci 
+	"Be aware that the two INVITE messages for the two separate voice streams contain the same near-end
+	and far-end call information. The only difference in the two From headers is the first x- parameter, which
+	indicates whether the call is for the near-end voice stream or for the far-end voice stream. x-nearend
+	indicates the near-end (agent) voice stream. x-farend indicates the far-end (customer) voice stream."
+
+	The packets captures I sent you contained only one of the streams. Sorry for any confusion.
+
+x-nearendevice – Device name of the agent's phone. = 'SEP' + MAC_address
+x-farendrefci - Customer's call leg caller ID.
