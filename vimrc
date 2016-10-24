@@ -9,7 +9,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'Chiel92/vim-autoformat'
 Plugin 'jnurmine/Zenburn'
-Plugin 'sheerun/vim-polyglot'
+" Plugin 'sheerun/vim-polyglot'
 " Plugin 'klen/python-mode'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'nvie/vim-flake8'
@@ -112,7 +112,7 @@ au BufNewFile,BufRead *.py
 			\ set textwidth=79 |
 			\ set expandtab |
 			\ set autoindent |
-			\ set fileformat=unix |
+			\ set fileformat=unix
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
