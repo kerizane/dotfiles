@@ -7,7 +7,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'Chiel92/vim-autoformat'
 Plugin 'jnurmine/Zenburn'
+" Plugin 'sheerun/vim-polyglot'
 " Plugin 'klen/python-mode'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'nvie/vim-flake8'
@@ -31,8 +33,11 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
-" Setting some decent VIM settings for programming
+" turn on undo files, put them in a common location
+set undofile
+set undodir=~/.vim/_undo/
 
+" Setting some decent VIM settings for programming
 set ai                          " set auto-indenting on for programming
 set showmatch                   " automatically show matching brackets. works like it does in bbedit.
 set ruler                       " show the cursor position all the time
@@ -112,12 +117,12 @@ au BufNewFile,BufRead *.py
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 au BufNewFile,BufRead *.js,*.html,*.css
-      \ set tabstop=2 |
+			\ set tabstop=2 |
 			\ set softtabstop=2 |
 			\ set shiftwidth=2 |
 			\ set expandtab |
 			\ set autoindent |
-			\ set fileformat=unix
+			\ set fileformat=unix |
 
 "python with virtualenv support
 py << EOF
@@ -149,3 +154,5 @@ autocmd FileType xml setlocal shiftwidth=2 tabstop=2
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 nnoremap J mzJ`z
 set wildmode=longest:list
+
+noremap Q <Nop>
