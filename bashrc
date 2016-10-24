@@ -6,3 +6,5 @@ if [ -f /etc/bashrc ]; then
 fi
 
 source ~/.profile
+
+alias se="sudoedit"
