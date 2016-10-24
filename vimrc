@@ -8,7 +8,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jnurmine/Zenburn'
-Plugin 'klen/python-mode'
+" Plugin 'klen/python-mode'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/syntastic'
@@ -107,14 +107,17 @@ au BufNewFile,BufRead *.py
 			\ set textwidth=79 |
 			\ set expandtab |
 			\ set autoindent |
-			\ set fileformat=unix |
+			\ set fileformat=unix
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-au BufNewFile,BufRead *.js, *.html, *.css
-			\ set tabstop=2 |
+au BufNewFile,BufRead *.js,*.html,*.css
+      \ set tabstop=2 |
 			\ set softtabstop=2 |
 			\ set shiftwidth=2 |
+			\ set expandtab |
+			\ set autoindent |
+			\ set fileformat=unix
 
 "python with virtualenv support
 py << EOF
