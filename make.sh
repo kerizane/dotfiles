@@ -21,6 +21,9 @@ cd $dir
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
 	mv ~/.$file $olddir
+	if [ -L ~/.$file ]; then
+		unlink ~/.$file
+	fi
 	ln -s $dir/$file ~/.$file
 done
 
