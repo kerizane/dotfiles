@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-files="tmux.conf inputrc bashrc vimrc vim profile bash_profile zshrc Xresources"    # list of files/folders to symlink in homedir
+files="gitconfig tmux.conf inputrc bashrc vimrc vim profile bash_profile zshrc Xresources"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -26,5 +26,3 @@ done
 
 xrdb -merge ~/.Xresources
 git clone ssh://git@github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim
-
-git config --global core.editor $(which vim)
