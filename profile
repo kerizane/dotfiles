@@ -14,6 +14,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias sudo="sudo "
+alias pls="sudo !!"
 
 if [ $is_arch ]; then
 	alias off='shutdown now'
