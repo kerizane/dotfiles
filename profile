@@ -15,6 +15,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias sudo="sudo "
 alias pls="sudo !!"
+alias nr="sudo nginx -s reload"
 
 if [ $is_arch ]; then
 	alias off='shutdown now'
