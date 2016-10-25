@@ -8,3 +8,7 @@ export EDITOR="$VISUAL"
 
 #Aliases
 alias se="sudoedit"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
