@@ -8,6 +8,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 #Aliases
+alias g="git"
 alias se="sudoedit"
 alias ..="cd .."
 alias ...="cd ../.."
