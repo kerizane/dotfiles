@@ -54,7 +54,7 @@ set showmode                    " show the current mode
 set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
 syntax on                       " turn syntax highlighting on by default
 set cul
- " hi CursorLine term=none cterm=none ctermbg=3 
+" hi CursorLine term=none cterm=none ctermbg=3 
 
 
 " Show EOL type and last modified timestamp, right after the filename
@@ -133,26 +133,16 @@ au BufNewFile,BufRead *.js,*.html,*.css
 			\ set autoindent |
 			\ set fileformat=unix |
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-	project_base_dir = os.environ['VIRTUAL_ENV']
-	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-	execfile(activate_this, dict(__file__=activate_this))
-EOF
-
 if has("user_commands")
-    command! -bang -nargs=? -complete=file E e<bang> <args>
-    command! -bang -nargs=? -complete=file W w<bang> <args>
-    command! -bang -nargs=? -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=? -complete=file WQ wq<bang> <args>
-    command! -bang Wa wa<bang>
-    command! -bang WA wa<bang>
-    command! -bang Q q<bang>
-    command! -bang QA qa<bang>
-    command! -bang Qa qa<bang>
+	command! -bang -nargs=? -complete=file E e<bang> <args>
+	command! -bang -nargs=? -complete=file W w<bang> <args>
+	command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+	command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+	command! -bang Wa wa<bang>
+	command! -bang WA wa<bang>
+	command! -bang Q q<bang>
+	command! -bang QA qa<bang>
+	command! -bang Qa qa<bang>
 endif
 
 set hlsearch
@@ -177,4 +167,29 @@ cnoremap <C-f> <Right>
 cnoremap b <S-Left>
 cnoremap f <S-Right>
 
+vnoremap . :normal .<CR>
 
+" Leader mappings
+let mapleader = "\<Space>"
+nnoremap <Leader>s :w<cr>
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+	let @" = s:restore_reg
+	return ''
+endfunction
+function! s:Repl()
+	let s:restore_reg = @"
+	return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+	project_base_dir = os.environ['VIRTUAL_ENV']
+	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+	execfile(activate_this, dict(__file__=activate_this))
+EOF
