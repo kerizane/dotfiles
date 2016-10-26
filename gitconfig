@@ -4,6 +4,7 @@
 	editor = vim
 [alias]
 	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+	su = set-upstream
 	cam = commit -am 
 	cm = commit -m
 	u = push
@@ -12,6 +13,7 @@
 	dr = checkout --
 	s = status
 	co = checkout
+	cob = checkout -b
 	b = branch
 
 [user]
