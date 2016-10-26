@@ -9,6 +9,8 @@
 	u = push
 	d = pull
 	m = merge
+	dr = checkout --
+	s = status
 [user]
 	email = keri.z.volans@accenture.com
 	name = Keri Volans
