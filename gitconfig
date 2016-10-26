@@ -14,7 +14,7 @@
 	s = status
 	co = checkout
 	cob = checkout -b
-	b = branch
+	br = branch
 
 [user]
 	email = keri.z.volans@accenture.com
