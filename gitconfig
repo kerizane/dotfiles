@@ -1,7 +1,7 @@
 [push]
 	default = simple
 [core]
-	editor = $EDITIOR
+	editor = vim
 [alias]
 	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	cam = commit -am 
