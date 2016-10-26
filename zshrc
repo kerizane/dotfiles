@@ -17,5 +17,5 @@ bindkey "^[[B" history-beginning-search-forward
 setopt HIST_IGNORE_DUPS
 
 
-alias -g G="| grep"
 alias -g V="| vim -"
+alias -g G="| grep"
