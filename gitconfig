@@ -6,6 +6,9 @@
 	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	cam = commit -am 
 	cm = commit -m
+	u = push
+	d = pull
+	m = merge
 [user]
 	email = keri.z.volans@accenture.com
 	name = Keri Volans
