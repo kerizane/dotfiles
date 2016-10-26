@@ -40,6 +40,12 @@ set undodir=~/.vim/_undo/
 " Setting some decent VIM settings for programming
 set ai                          " set auto-indenting on for programming
 set showmatch                   " automatically show matching brackets. works like it does in bbedit.
+set incsearch
+set autoread
+set lazyredraw
+set ttyfast
+set hidden
+set shell=zsh
 set ruler                       " show the cursor position all the time
 set laststatus=2                " make the last line where the status is two lines deep so you can see status always
 set backspace=indent,eol,start  " make that backspace key work the way it should
@@ -47,6 +53,9 @@ set background=dark             " Use colours that work well on a dark backgroun
 set showmode                    " show the current mode
 set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
 syntax on                       " turn syntax highlighting on by default
+set cul
+ " hi CursorLine term=none cterm=none ctermbg=3 
+
 
 " Show EOL type and last modified timestamp, right after the filename
 set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
@@ -157,3 +166,15 @@ set wildmode=longest:list
 
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
+
+" Command Readline
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap b <S-Left>
+cnoremap f <S-Right>
+
+
