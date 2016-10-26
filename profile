@@ -9,6 +9,7 @@ export EDITOR="$VISUAL"
 
 #Aliases
 alias g="git"
+alias v="vim"
 alias se="sudoedit"
 alias ll="ls -l"
 alias la="ls -a"
