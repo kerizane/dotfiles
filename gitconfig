@@ -1,0 +1,11 @@
+[push]
+	default = simple
+[core]
+	editor = $EDITIOR
+[alias]
+	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+	cam = commit -am 
+	cm = commit -m
+[user]
+	email = keri.z.volans@accenture.com
+	name = Keri Volans
