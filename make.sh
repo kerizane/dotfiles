@@ -22,9 +22,11 @@ cd $dir
 for file in $files; do
 	if [ -L ~/.$file ]; then
 		unlink ~/.$file
-	elif [ -d ~/.$file ]; then
-		mv ~/.$file $olddir
-	fi
+	else 
+		new_name="_$(date +%d-%m-%y)_$(date +%T)"
+		new_name="$file$new_name"
+		mv ~/.$file $olddir/$newname
+ 	fi
 	ln -s $dir/$file ~/.$file
 done
 
