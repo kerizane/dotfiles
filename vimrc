@@ -184,6 +184,9 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 
+nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <Leader>vs :source $MYVIMRC<cr>
+
 "python with virtualenv support
 py << EOF
 import os
@@ -193,3 +196,5 @@ if 'VIRTUAL_ENV' in os.environ:
 	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
 	execfile(activate_this, dict(__file__=activate_this))
 EOF
+
+
