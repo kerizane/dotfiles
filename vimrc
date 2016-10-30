@@ -7,8 +7,8 @@ else
 	let path='~/vimfiles/bundle'
 	call vundle#begin(path)
 endif
-Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -31,7 +31,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vinegar'
+" Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/indentpython.vim'
 call vundle#end()
 
@@ -90,9 +90,9 @@ if has("autocmd")
 				\ match WhiteSpaceEOL /\(^+.*\)\@<=\s\+$/
 
 	autocmd Syntax gitcommit setlocal textwidth=74
-endif " has("autocmd")
+endif
 
-inoremap jk <Esc>
+noremap jk <Esc>
 set number
 set shortmess+=I
 set backspace=indent,eol,start
@@ -149,6 +149,7 @@ if has("user_commands")
 	command! -bang Q q<bang>
 	command! -bang QA qa<bang>
 	command! -bang Qa qa<bang>
+	command SW SudoWrite
 endif
 
 set hlsearch
@@ -192,7 +193,7 @@ vmap <silent> <expr> p <sid>Repl()
 
 nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <Leader>vs :source $MYVIMRC<cr>
-
+nnoremap <Leader>j `
 nnoremap <Leader>f gg=G<C-O><C-O>
 
 "python with virtualenv support
