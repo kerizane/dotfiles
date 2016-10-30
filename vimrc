@@ -92,7 +92,11 @@ if has("autocmd")
 	autocmd Syntax gitcommit setlocal textwidth=74
 endif
 
-noremap jk <Esc>
+" cnoremap jk <Esc>
+cnoremap jk <Esc>
+vnoremap jk <Esc>
+inoremap jk <Esc>
+snoremap jk <Esc>
 set number
 set shortmess+=I
 set backspace=indent,eol,start
@@ -149,7 +153,7 @@ if has("user_commands")
 	command! -bang Q q<bang>
 	command! -bang QA qa<bang>
 	command! -bang Qa qa<bang>
-	command SW SudoWrite
+	" command SW SudoWrite
 endif
 
 set hlsearch
