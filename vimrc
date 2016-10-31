@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-if has("unix")
+if isdirectory(glob("~/.vim/bundle/Vundle.vim"))
 	set rtp+=~/.vim/bundle/Vundle.vim
 	call vundle#begin()
 else
@@ -7,6 +7,7 @@ else
 	let path='~/vimfiles/bundle'
 	call vundle#begin(path)
 endif
+
 
 Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
@@ -31,7 +32,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-" Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/indentpython.vim'
 call vundle#end()
 
@@ -90,12 +91,11 @@ if has("autocmd")
 				\ match WhiteSpaceEOL /\(^+.*\)\@<=\s\+$/
 
 	autocmd Syntax gitcommit setlocal textwidth=74
-endif
+endif " has("autocmd")
 
-" cnoremap jk <Esc>
+inoremap jk <Esc>
 cnoremap jk <Esc>
 vnoremap jk <Esc>
-inoremap jk <Esc>
 snoremap jk <Esc>
 set number
 set shortmess+=I
@@ -153,7 +153,6 @@ if has("user_commands")
 	command! -bang Q q<bang>
 	command! -bang QA qa<bang>
 	command! -bang Qa qa<bang>
-	" command SW SudoWrite
 endif
 
 set hlsearch
@@ -197,9 +196,11 @@ vmap <silent> <expr> p <sid>Repl()
 
 nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <Leader>vs :source $MYVIMRC<cr>
-nnoremap <Leader>j `
+
 nnoremap <Leader>f gg=G<C-O><C-O>
 
+nmap gcp yygccp
+vmap gcp ygvgc`>p
 "python with virtualenv support
 if has("python")
 	pyfile ~/.vim/support_venv.py
