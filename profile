@@ -8,6 +8,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 #Aliases
+alias php="php56"
 alias g="git"
 alias v="vim"
 alias se="sudoedit"
