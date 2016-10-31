@@ -40,3 +40,8 @@ fi
 # 	fi;
 # 	builtin cd "${new_directory}" && ls
 # }
+#
+function gfind() {
+	grep -rnw . -e "$1"
+	}
+	
