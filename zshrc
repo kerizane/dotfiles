@@ -19,3 +19,4 @@ setopt HIST_IGNORE_DUPS
 
 alias -g V="| vim -"
 alias -g G="| grep"
+alias -g sil="> /dev/null 2>&1 &"

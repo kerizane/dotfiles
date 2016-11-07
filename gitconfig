@@ -3,7 +3,7 @@
 [core]
 	editor = vim
 [alias]
-	su = git push --set-upstream origin
+	su = push --set-upstream origin
 	cam = commit -am 
 	cm = commit -m
 	u = push

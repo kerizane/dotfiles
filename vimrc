@@ -35,9 +35,11 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'dsawardekar/wordpress.vim'
+Plugin 'rstacruz/sparkup'
 call vundle#end()
 
 filetype plugin indent on 
+set omnifunc=syntaxcomplete#Complete
 syntax on
 
 set hlsearch
@@ -174,17 +176,19 @@ cnoremap f <S-Right>
 vnoremap . :normal .<CR>
 vmap <silent> <expr> p <sid>Repl()
 
-nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
-nnoremap <Leader>vs :source $MYVIMRC<cr>
-
-nnoremap <Leader>f gg=G<C-O><C-O>
-
 nmap gcp yygccp
 vmap gcp ygvgc`>p
 
 " Leader mappings
 let mapleader = "\<Space>"
 nnoremap <Leader>s :w<cr>
+nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <Leader>vs :source $MYVIMRC<cr>
+nnoremap <Leader>f gg=G<C-O><C-O>
+nnoremap <Leader>j `
+nnoremap <Leader>nh :noh<CR>
+nnoremap <Leader>nn :set nonumber!<CR>
+
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -222,3 +226,17 @@ endfunction
 
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 hi link Repeat Statement
+
+set tags=./tags
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
