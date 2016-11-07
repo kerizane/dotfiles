@@ -36,6 +36,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'dsawardekar/wordpress.vim'
 Plugin 'rstacruz/sparkup'
+Plugin 'justinmk/vim-sneak'
 call vundle#end()
 
 filetype plugin indent on 
@@ -92,10 +93,12 @@ if has("autocmd")
 	autocmd Syntax gitcommit setlocal textwidth=74
 endif
 
+
 inoremap jk <Esc>
 cnoremap jk <Esc>
 vnoremap jk <Esc>
 snoremap jk <Esc>
+
 nnoremap Y y$
 nnoremap <Return> o<Esc>
 nnoremap <S-Return> O<Esc>
@@ -188,6 +191,8 @@ nnoremap <Leader>f gg=G<C-O><C-O>
 nnoremap <Leader>j `
 nnoremap <Leader>nh :noh<CR>
 nnoremap <Leader>nn :set nonumber!<CR>
+
+nnoremap <Leader>c :
 
 
 " vp doesn't replace paste buffer
