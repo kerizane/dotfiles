@@ -13,21 +13,25 @@ else
 	call vundle#begin(path)
 endif
 
-call dein#add('Shougo/dein.vim')
-call dein#add('Valloric/YouCompleteMe')
+" call dein#add('Chiel92/vim-autoformat')
+" call dein#add('klen/python-mode')
+" call dein#add('sheerun/vim-polyglot')
+" call dein#add('shougo/neosnippet.vim')
+" call dein#add('Valloric/YouCompleteMe')
 call dein#add('altercation/vim-colors-solarized')
-call dein#add('christoomey/vim-tmux-navigator')
+" call dein#add('christoomey/vim-tmux-navigator')
 call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('dsawardekar/wordpress.vim', { 'on_ft': ['php'] })
 call dein#add('jnurmine/Zenburn')
-" call " dein#add(Plugin 'Chiel92/vim-autoformat')
-" dein#add(Plugin 'sheerun/vim-polyglot')
-" d#add(Plugin 'klen/python-mode')
+call dein#add('justinmk/vim-sneak')
 call dein#add('nelstrom/vim-visual-star-search')
-call dein#add('nvie/vim-flake8')
+call dein#add('nvie/vim-flake8', { 'on_ft': ['py'] })
+call dein#add('rstacruz/sparkup')
 call dein#add('scrooloose/syntastic')
+call dein#add('shougo/dein.vim')
 call dein#add('shougo/neocomplete.vim')
-call dein#add('tmhedberg/SimpylFold')
 call dein#add('tmhedberg/matchit')
+call dein#add('tmhedberg/SimpylFold')
 call dein#add('tpope/vim-abolish')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-eunuch')
@@ -37,10 +41,7 @@ call dein#add('tpope/vim-sensible')
 call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-unimpaired')
 call dein#add('tpope/vim-vinegar')
-call dein#add('vim-scripts/indentpython.vim')
-call dein#add('dsawardekar/wordpress.vim')
-call dein#add('rstacruz/sparkup')
-call dein#add('justinmk/vim-sneak')
+call dein#add('vim-scripts/indentpython.vim', { 'on_ft': ['py'] })
 call dein#end()
 
 filetype plugin indent on 
@@ -118,26 +119,7 @@ else
 	colorscheme zenburn
 endif
 
-" Python
-set foldmethod=indent
-set foldlevel=99
-set encoding=utf-8
-highlight BadWhitespace ctermbg=red guibg=darkred
-let python_highlight_all=1
-syntax on
-
 if has("autocmd")
-	au BufNewFile,BufRead *.py
-				\ set tabstop=4 |
-				\ set softtabstop=4 |
-				\ set shiftwidth=4 |
-				\ set textwidth=79 |
-				\ set expandtab |
-				\ set autoindent |
-				\ set fileformat=unix
-
-	au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
 	au BufNewFile,BufRead *.js,*.html,*.css
 				\ set tabstop=2 |
 				\ set softtabstop=2 |
@@ -209,11 +191,6 @@ function! s:Repl()
 	let s:restore_reg = @"
 	return "p@=RestoreRegister()\<cr>"
 endfunction
-
-if has("python")
-	pyfile ~/.vim/support_venv.py
-endif
-
 
 function! HighlightRepeats() range
 	let lineCounts = {}
