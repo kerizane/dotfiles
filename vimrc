@@ -1,11 +1,10 @@
 set nocompatible              " be iMproved, required
 
 if isdirectory(glob("~/.vim/bundle/Vundle.vim"))
-	let path='~/.vim/bundle'
+	let path=glob("~/.vim/bundle/")
 	" set rtp+=~/.vim/bundle/dein.vim
 	set runtimepath+=/home/keri/dotfiles/vim/bundle//repos/github.com/Shougo/dein.vim
-	" call dein#begin('~/.vim/bundle')
-	call dein#begin('/home/keri/dotfiles/vim/bundle/')
+	call dein#begin(path)
 else
 	set rtp+=~/vimfiles/bundle/Vundle.vim/
 	let path='~/vimfiles/bundle'
@@ -45,34 +44,37 @@ call dein#add('vim-scripts/indentpython.vim', { 'on_ft': ['py'] })
 call dein#end()
 
 filetype plugin indent on 
-set omnifunc=syntaxcomplete#Complete
 syntax on
 
-set hlsearch
-set undofile
-set undodir=~/.vim/_undo/
-set ai                          " set auto-indenting on for programming
-set showmatch                   " automatically show matching brackets. works like it does in bbedit.
-set incsearch
+set autoindent                          " set auto-indenting on for programming
 set autoread
-set lazyredraw
-set ttyfast
-set hidden
-set shell=zsh
-set ruler                       " show the cursor position all the time
-set laststatus=2                " make the last line where the status is two lines deep so you can see status always
-set backspace=indent,eol,start  " make that backspace key work the way it should
 set background=dark             " Use colours that work well on a dark background (Console is usually black)
-set showmode                    " show the current mode
+set backspace=indent,eol,start  " make that backspace key work the way it should
 set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
-set cul
+set cursorline
+set hidden
+set hlsearch
+set incsearch
+set laststatus=2                " make the last line where the status is two lines deep so you can see status always
+set lazyredraw
 set number
+set omnifunc=syntaxcomplete#Complete
+set ruler                       " show the cursor position all the time
+set shell=zsh
 set shortmess+=I
+set showmatch                   " automatically show matching brackets. works like it does in bbedit.
+set showmode                    " show the current mode
+set tags=./tags
+set ttyfast
+set undodir=~/.vim/_undo/
+set undofile
 set wildmode=longest,list
-" hi CursorLine term=none cterm=none ctermbg=3 
 
 " Show EOL type and last modified timestamp, right after the filename
 set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 if has("autocmd")
 	"Set UTF-8 as the default encoding for commit messages
@@ -96,30 +98,7 @@ if has("autocmd")
 				\ match WhiteSpaceEOL /\(^+.*\)\@<=\s\+$/
 
 	autocmd Syntax gitcommit setlocal textwidth=74
-endif
 
-
-inoremap jk <Esc>
-cnoremap jk <Esc>
-vnoremap jk <Esc>
-snoremap jk <Esc>
-
-nnoremap Y y$
-nnoremap <Return> o<Esc>
-nnoremap <S-Return> O<Esc>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-if has('gui_running')
-	set background=dark
-	colorscheme solarized
-else
-	colorscheme zenburn
-endif
-
-if has("autocmd")
 	au BufNewFile,BufRead *.js,*.html,*.css
 				\ set tabstop=2 |
 				\ set softtabstop=2 |
@@ -130,6 +109,13 @@ if has("autocmd")
 
 	autocmd FileType html setlocal shiftwidth=2 tabstop=2
 	autocmd FileType xml setlocal shiftwidth=2 tabstop=2
+endif
+
+if has('gui_running')
+	set background=dark
+	colorscheme solarized
+else
+	colorscheme zenburn
 endif
 
 if has("user_commands")
@@ -144,9 +130,19 @@ if has("user_commands")
 	command! -bang Qa qa<bang>
 endif
 
+inoremap jk <Esc>
+cnoremap jk <Esc>
+vnoremap jk <Esc>
+snoremap jk <Esc>
 
+nnoremap Y y$
+nnoremap <Return> o<Esc>
+nnoremap <S-Return> O<Esc>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 nnoremap J mzJ`z
 
 nnoremap Q @q
@@ -163,12 +159,13 @@ cnoremap b <S-Left>
 cnoremap f <S-Right>
 
 vnoremap . :normal .<CR>
+vnoremap A :normal A 
+vnoremap I :normal I
 vmap <silent> <expr> p <sid>Repl()
 
 nmap gcp yygccp
 vmap gcp ygvgc`>p
 
-" Leader mappings
 let mapleader = "\<Space>"
 nnoremap <Leader>s :w<cr>
 nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
@@ -179,7 +176,6 @@ nnoremap <Leader>nh :noh<CR>
 nnoremap <Leader>nn :set nonumber!<CR>
 
 nnoremap <Leader>c :
-
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -213,16 +209,11 @@ endfunction
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 hi link Repeat Statement
 
-set tags=./tags
-
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
