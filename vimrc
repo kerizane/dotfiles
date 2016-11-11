@@ -1,41 +1,46 @@
 set nocompatible              " be iMproved, required
+
 if isdirectory(glob("~/.vim/bundle/Vundle.vim"))
-	set rtp+=~/.vim/bundle/Vundle.vim
-	call vundle#begin()
+	let path='~/.vim/bundle'
+	" set rtp+=~/.vim/bundle/dein.vim
+	set runtimepath+=/home/keri/dotfiles/vim/bundle//repos/github.com/Shougo/dein.vim
+	" call dein#begin('~/.vim/bundle')
+	call dein#begin('/home/keri/dotfiles/vim/bundle/')
 else
 	set rtp+=~/vimfiles/bundle/Vundle.vim/
 	let path='~/vimfiles/bundle'
+	" call vundle#begin(path)
 	call vundle#begin(path)
 endif
 
-
-Plugin 'VundleVim/Vundle.vim'
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'Chiel92/vim-autoformat'
-Plugin 'jnurmine/Zenburn'
-" Plugin 'sheerun/vim-polyglot'
-" Plugin 'klen/python-mode'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/syntastic'
-Plugin 'shougo/neocomplete.vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vinegar'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'dsawardekar/wordpress.vim'
-call vundle#end()
+call dein#add('Shougo/dein.vim')
+call dein#add('Valloric/YouCompleteMe')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('christoomey/vim-tmux-navigator')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('jnurmine/Zenburn')
+" call " dein#add(Plugin 'Chiel92/vim-autoformat')
+" dein#add(Plugin 'sheerun/vim-polyglot')
+" d#add(Plugin 'klen/python-mode')
+call dein#add('nelstrom/vim-visual-star-search')
+call dein#add('nvie/vim-flake8')
+call dein#add('scrooloose/syntastic')
+call dein#add('shougo/neocomplete.vim')
+call dein#add('tmhedberg/SimpylFold')
+call dein#add('tmhedberg/matchit')
+call dein#add('tpope/vim-abolish')
+call dein#add('tpope/vim-commentary')
+call dein#add('tpope/vim-eunuch')
+call dein#add('tpope/vim-ragtag')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-sensible')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-unimpaired')
+call dein#add('tpope/vim-vinegar')
+call dein#add('vim-scripts/indentpython.vim')
+call dein#add('dsawardekar/wordpress.vim')
+call dein#add('shougo/dein.vim')
+call dein#end()
 
 filetype plugin indent on 
 syntax on
