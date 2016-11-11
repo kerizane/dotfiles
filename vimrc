@@ -28,7 +28,6 @@ call dein#add('rstacruz/sparkup')
 call dein#add('scrooloose/syntastic')
 call dein#add('shougo/dein.vim')
 " call dein#add('shougo/neocomplete.vim')
-" call dein#add('Shougo/neosnippet')
 " call dein#add('Shougo/neosnippet-snippets')
 call dein#add('tmhedberg/matchit')
 call dein#add('tmhedberg/SimpylFold')
@@ -53,6 +52,7 @@ set autoread
 set background=dark             " Use colours that work well on a dark background (Console is usually black)
 set backspace=indent,eol,start  " make that backspace key work the way it should
 set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
+set completeopt=longest
 set cursorline
 set hidden
 set hlsearch
