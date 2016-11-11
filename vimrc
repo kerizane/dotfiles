@@ -36,6 +36,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'dsawardekar/wordpress.vim'
 Plugin 'rstacruz/sparkup'
+Plugin 'tkhren/vim-fake'
 Plugin 'justinmk/vim-sneak'
 call vundle#end()
 
@@ -194,6 +195,13 @@ nnoremap <Leader>nn :set nonumber!<CR>
 
 nnoremap <Leader>c :
 
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+vnoremap <leader>p "_dP
+
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -245,3 +253,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+
+autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
+
