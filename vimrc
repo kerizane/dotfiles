@@ -39,10 +39,12 @@ call dein#add('tpope/vim-unimpaired')
 call dein#add('tpope/vim-vinegar')
 call dein#add('vim-scripts/indentpython.vim')
 call dein#add('dsawardekar/wordpress.vim')
-call dein#add('shougo/dein.vim')
+call dein#add('rstacruz/sparkup')
+call dein#add('justinmk/vim-sneak')
 call dein#end()
 
 filetype plugin indent on 
+set omnifunc=syntaxcomplete#Complete
 syntax on
 
 set hlsearch
@@ -95,10 +97,12 @@ if has("autocmd")
 	autocmd Syntax gitcommit setlocal textwidth=74
 endif
 
+
 inoremap jk <Esc>
 cnoremap jk <Esc>
 vnoremap jk <Esc>
 snoremap jk <Esc>
+
 nnoremap Y y$
 nnoremap <Return> o<Esc>
 nnoremap <S-Return> O<Esc>
@@ -179,17 +183,21 @@ cnoremap f <S-Right>
 vnoremap . :normal .<CR>
 vmap <silent> <expr> p <sid>Repl()
 
-nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
-nnoremap <Leader>vs :source $MYVIMRC<cr>
-
-nnoremap <Leader>f gg=G<C-O><C-O>
-
 nmap gcp yygccp
 vmap gcp ygvgc`>p
 
 " Leader mappings
 let mapleader = "\<Space>"
 nnoremap <Leader>s :w<cr>
+nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <Leader>vs :source $MYVIMRC<cr>
+nnoremap <Leader>f gg=G<C-O><C-O>
+nnoremap <Leader>j `
+nnoremap <Leader>nh :noh<CR>
+nnoremap <Leader>nn :set nonumber!<CR>
+
+nnoremap <Leader>c :
+
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -227,3 +235,17 @@ endfunction
 
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 hi link Repeat Statement
+
+set tags=./tags
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
