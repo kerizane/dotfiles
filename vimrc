@@ -1,74 +1,80 @@
 set nocompatible              " be iMproved, required
+
 if isdirectory(glob("~/.vim/bundle/Vundle.vim"))
-	set rtp+=~/.vim/bundle/Vundle.vim
-	call vundle#begin()
+	let path=glob("~/.vim/bundle/")
+	" set rtp+=~/.vim/bundle/dein.vim
+	set runtimepath+=/home/keri/dotfiles/vim/bundle//repos/github.com/Shougo/dein.vim
+	call dein#begin(path)
 else
 	set rtp+=~/vimfiles/bundle/Vundle.vim/
 	let path='~/vimfiles/bundle'
+	" call vundle#begin(path)
 	call vundle#begin(path)
 endif
 
-
-Plugin 'VundleVim/Vundle.vim'
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'Chiel92/vim-autoformat'
-Plugin 'jnurmine/Zenburn'
-" Plugin 'sheerun/vim-polyglot'
-" Plugin 'klen/python-mode'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/syntastic'
-Plugin 'shougo/neocomplete.vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vinegar'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'dsawardekar/wordpress.vim'
-Plugin 'rstacruz/sparkup'
-Plugin 'tkhren/vim-fake'
-Plugin 'justinmk/vim-sneak'
-call vundle#end()
+" call dein#add('klen/python-mode')
+" call dein#add('sheerun/vim-polyglot')
+" call dein#add('shougo/neosnippet.vim')
+" call dein#add('Valloric/YouCompleteMe')
+call dein#add('altercation/vim-colors-solarized')
+" call dein#add('christoomey/vim-tmux-navigator')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('dsawardekar/wordpress.vim', { 'on_ft': ['php'] })
+call dein#add('jnurmine/Zenburn')
+call dein#add('justinmk/vim-sneak')
+call dein#add('nelstrom/vim-visual-star-search')
+call dein#add('nvie/vim-flake8', { 'on_ft': ['py'] })
+call dein#add('rstacruz/sparkup')
+call dein#add('scrooloose/syntastic')
+call dein#add('shougo/dein.vim')
+call dein#add('shougo/neocomplete.vim')
+call dein#add('tmhedberg/matchit')
+call dein#add('tmhedberg/SimpylFold')
+call dein#add('tpope/vim-abolish')
+call dein#add('tpope/vim-commentary')
+call dein#add('tpope/vim-eunuch')
+call dein#add('tpope/vim-ragtag')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-sensible')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-unimpaired')
+call dein#add('tpope/vim-vinegar')
+call dein#add('vim-scripts/indentpython.vim', { 'on_ft': ['py'] })
+call dein#end()
 
 filetype plugin indent on 
-set omnifunc=syntaxcomplete#Complete
 syntax on
+let mapleader = "\<Space>"
 
-set hlsearch
-set undofile
-set undodir=~/.vim/_undo/
-set ai                          " set auto-indenting on for programming
-set showmatch                   " automatically show matching brackets. works like it does in bbedit.
-set incsearch
+set autoindent                          " set auto-indenting on for programming
 set autoread
-set lazyredraw
-set ttyfast
-set hidden
-set shell=zsh
-set ruler                       " show the cursor position all the time
-set laststatus=2                " make the last line where the status is two lines deep so you can see status always
-set backspace=indent,eol,start  " make that backspace key work the way it should
 set background=dark             " Use colours that work well on a dark background (Console is usually black)
-set showmode                    " show the current mode
+set backspace=indent,eol,start  " make that backspace key work the way it should
 set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
-set cul
+set cursorline
+set hidden
+set hlsearch
+set incsearch
+set laststatus=2                " make the last line where the status is two lines deep so you can see status always
+set lazyredraw
 set number
+set omnifunc=syntaxcomplete#Complete
+set ruler                       " show the cursor position all the time
+set shell=zsh
 set shortmess+=I
+set showmatch                   " automatically show matching brackets. works like it does in bbedit.
+set showmode                    " show the current mode
+set tags=./tags
+set ttyfast
+set undodir=~/.vim/_undo/
+set undofile
 set wildmode=longest,list
-" hi CursorLine term=none cterm=none ctermbg=3 
 
 " Show EOL type and last modified timestamp, right after the filename
 set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 if has("autocmd")
 	"Set UTF-8 as the default encoding for commit messages
@@ -92,48 +98,6 @@ if has("autocmd")
 				\ match WhiteSpaceEOL /\(^+.*\)\@<=\s\+$/
 
 	autocmd Syntax gitcommit setlocal textwidth=74
-endif
-
-
-inoremap jk <Esc>
-cnoremap jk <Esc>
-vnoremap jk <Esc>
-snoremap jk <Esc>
-
-nnoremap Y y$
-nnoremap <Return> o<Esc>
-nnoremap <S-Return> O<Esc>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-if has('gui_running')
-	set background=dark
-	colorscheme solarized
-else
-	colorscheme zenburn
-endif
-
-" Python
-set foldmethod=indent
-set foldlevel=99
-set encoding=utf-8
-highlight BadWhitespace ctermbg=red guibg=darkred
-let python_highlight_all=1
-syntax on
-
-if has("autocmd")
-	au BufNewFile,BufRead *.py
-				\ set tabstop=4 |
-				\ set softtabstop=4 |
-				\ set shiftwidth=4 |
-				\ set textwidth=79 |
-				\ set expandtab |
-				\ set autoindent |
-				\ set fileformat=unix
-
-	au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 	au BufNewFile,BufRead *.js,*.html,*.css
 				\ set tabstop=2 |
@@ -143,8 +107,16 @@ if has("autocmd")
 				\ set autoindent |
 				\ set fileformat=unix |
 
-	autocmd FileType html setlocal shiftwidth=2 tabstop=2
-	autocmd FileType xml setlocal shiftwidth=2 tabstop=2
+	autocmd FileType html, xml setlocal shiftwidth=2 tabstop=2
+	autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
+
+endif
+
+if has('gui_running')
+	set background=dark
+	colorscheme solarized
+else
+	colorscheme zenburn
 endif
 
 if has("user_commands")
@@ -159,9 +131,19 @@ if has("user_commands")
 	command! -bang Qa qa<bang>
 endif
 
+inoremap jk <Esc>
+cnoremap jk <Esc>
+vnoremap jk <Esc>
+snoremap jk <Esc>
 
+nnoremap Y y$
+nnoremap <Return> o<Esc>
+nnoremap <S-Return> O<Esc>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 nnoremap J mzJ`z
 
 nnoremap Q @q
@@ -178,13 +160,13 @@ cnoremap b <S-Left>
 cnoremap f <S-Right>
 
 vnoremap . :normal .<CR>
+vnoremap A :normal A 
+vnoremap I :normal I
 vmap <silent> <expr> p <sid>Repl()
 
 nmap gcp yygccp
 vmap gcp ygvgc`>p
 
-" Leader mappings
-let mapleader = "\<Space>"
 nnoremap <Leader>s :w<cr>
 nnoremap <Leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <Leader>vs :source $MYVIMRC<cr>
@@ -197,11 +179,7 @@ nnoremap <Leader>c :
 
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
-
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
-
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -213,11 +191,6 @@ function! s:Repl()
 	let s:restore_reg = @"
 	return "p@=RestoreRegister()\<cr>"
 endfunction
-
-if has("python")
-	pyfile ~/.vim/support_venv.py
-endif
-
 
 function! HighlightRepeats() range
 	let lineCounts = {}
@@ -240,13 +213,6 @@ endfunction
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 hi link Repeat Statement
 
-set tags=./tags
-
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -254,5 +220,4 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
-autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
-
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
