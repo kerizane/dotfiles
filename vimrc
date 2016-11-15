@@ -45,7 +45,6 @@ call dein#end()
 
 filetype plugin indent on 
 syntax on
-let mapleader = "\<Space>"
 
 set autoindent                          " set auto-indenting on for programming
 set autoread
