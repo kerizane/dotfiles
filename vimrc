@@ -66,7 +66,7 @@ set shell=zsh
 set shortmess+=I
 set showmatch                   " automatically show matching brackets. works like it does in bbedit.
 set showmode                    " show the current mode
-set tags=./tags
+set tags=./tags,tags;$HOME
 set ttyfast
 set undodir=~/.vim/_undo/
 set undofile
