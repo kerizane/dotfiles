@@ -3,17 +3,20 @@
 [core]
 	editor = vim
 [alias]
-	su = push --set-upstream origin
+	br = branch
+	c = commit
 	cam = commit -am 
+	cl = clone
 	cm = commit -m
-	u = push
-	d = pull
-	m = merge
-	dr = checkout --
-	s = status
 	co = checkout
 	cob = checkout -b
-	br = branch
+	d = pull
+	dr = checkout --
+	gg = git@github:
+	m = merge
+	s = status
+	su = push --set-upstream origin
+	u = push
 
 [user]
 	email = keri.z.volans@accenture.com
