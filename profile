@@ -8,22 +8,25 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 #Aliases
-alias php="php56"
+alias .....="cd ../../../.."
+alias ....="cd ../../.."
+alias ...="cd ../.."
+alias ..="cd .."
 alias g="git"
-alias v="vim"
-alias se="sudoedit"
-alias ll="ls -l"
 alias la="ls -a"
 alias lal="ls -al"
+alias ll="ls -l"
 alias lla="ls -al"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias sudo="sudo "
-alias pls="sudo !!"
 alias nr="sudo nginx -s reload"
 alias nt="sudo nginx -t"
+alias pa="ps aux"
+alias pag"ps aux | grep"
+alias pav"ps aux | vim -"
+alias php="php56"
+alias pls="sudo !!"
+alias se="sudoedit"
+alias sudo="sudo "
+alias v="vim"
 
 if [ $is_arch ]; then
 alias off='shutdown now'
@@ -33,6 +36,7 @@ alias pacin='sudo pacman -Su'
 fi
 
 #Functions
+#
 # function cd() {
 # 	new_directory="$*";
 # 	if [ $# -eq 0 ]; then 
@@ -40,8 +44,8 @@ fi
 # 	fi;
 # 	builtin cd "${new_directory}" && ls
 # }
-#
+
 function gfind() {
 	grep -rnw . -e "$1"
-	}
-	
+}
+
