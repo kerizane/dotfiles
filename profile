@@ -1,6 +1,8 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 is_arch="$(cat /proc/version | grep -c ARCH)"
 
+[[ -s /home/keri/.autojump/etc/profile.d/autojump.sh ]] && source /home/keri/.autojump/etc/profile.d/autojump.sh
+
 # Exports
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="/usr/local/heroku/bin:$PATH"
