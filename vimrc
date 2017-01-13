@@ -1,50 +1,39 @@
 set nocompatible              " be iMproved, required
 
-if isdirectory(glob("~/.vim/bundle/"))
-	let path=glob("~/.vim/bundle/")
-	" set rtp+=~/.vim/bundle/dein.vim
-	set runtimepath+=/home/keri/dotfiles/vim/bundle//repos/github.com/Shougo/dein.vim
-	call dein#begin(path)
-else
-	set rtp+=~/vimfiles/bundle/Vundle.vim/
-	let path='~/vimfiles/bundle'
-	" call vundle#begin(path)
-	call vundle#begin(path)
-endif
-
-" call dein#add('klen/python-mode')
-" call dein#add('sheerun/vim-polyglot')
-" call dein#add('shougo/neosnippet.vim')
-" call dein#add('Valloric/YouCompleteMe')
-" call dein#add('christoomey/vim-tmux-navigator')
-call dein#add('altercation/vim-colors-solarized')
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('dsawardekar/wordpress.vim', { 'on_ft': ['php'] })
-call dein#add('jnurmine/Zenburn')
-call dein#add('justinmk/vim-sneak')
-call dein#add('nelstrom/vim-visual-star-search')
-call dein#add('nvie/vim-flake8', { 'on_ft': ['py'] })
-call dein#add('rstacruz/sparkup')
-call dein#add('scrooloose/syntastic')
-call dein#add('shougo/dein.vim')
-" call dein#add('shougo/neocomplete.vim')
-" call dein#add('Shougo/neosnippet-snippets')
-call dein#add('tmhedberg/matchit')
-call dein#add('tmhedberg/SimpylFold')
-call dein#add('tpope/vim-abolish', { 'lazy': 1 })
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-eunuch')
-call dein#add('tpope/vim-ragtag')
-call dein#add('tpope/vim-repeat')
-call dein#add('tpope/vim-sensible', { 'lazy': 1 })
-call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-unimpaired', { 'lazy': 1 })
-call dein#add('tpope/vim-vinegar')
-call dein#add('vim-scripts/indentpython.vim', { 'on_ft': ['py'] })
-call dein#end()
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dsawardekar/wordpress.vim'
+Plug 'jnurmine/Zenburn'
+Plug 'justinmk/vim-sneak'
+Plug 'klen/python-mode'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'nvie/vim-flake8'
+Plug 'rstacruz/sparkup'
+Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'shougo/neosnippet.vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-scripts/indentpython.vim'
+call plug#end()
 
 filetype plugin indent on 
 syntax on
+"syntax enable
 
 set autoindent                          " set auto-indenting on for programming
 set autoread
@@ -112,12 +101,12 @@ if has("autocmd")
 	autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
 endif
 
-if has('gui_running')
-	set background=dark
-	colorscheme solarized
-else
-	colorscheme zenburn
-endif
+" if has('gui_running')
+" 	set background=dark
+" 	colorscheme solarized
+" else
+" 	colors zenburn
+" endif
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()

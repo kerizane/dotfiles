@@ -6,6 +6,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="/usr/local/heroku/bin:$PATH"
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export TERM=xterm-256color
 
 #Aliases
 alias .....="cd ../../../.."
@@ -20,8 +21,8 @@ alias lla="ls -al"
 alias nr="sudo nginx -s reload"
 alias nt="sudo nginx -t"
 alias pa="ps aux"
-alias pag"ps aux | grep"
-alias pav"ps aux | vim -"
+alias pag="ps aux | grep"
+alias pav="ps aux | vim -"
 alias php="php56"
 alias pls="sudo !!"
 alias se="sudoedit"
