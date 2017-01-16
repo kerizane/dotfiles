@@ -29,6 +29,8 @@ alias pls="sudo !!"
 alias se="sudoedit"
 alias sudo="sudo "
 alias v="vim"
+alias G="| grep"
+alias V="| vim"
 
 if [ $is_arch ]; then
 alias off='shutdown now'
