@@ -30,12 +30,19 @@ for file in $files; do
 	ln -s $dir/$file ~/.$file
 done
 
+# i3 specific version
+$file = i3/config
+if [ -L ~/.$file ]; then
+	unlink ~/.$file
+elif [ -d ~/.$file ]; then
+	mv ~/.$file $olddir
+fi
+ln -s $dir/$file ~/.$file
 
 if command -v xrdb >/dev/null 2>&1;then
 	#xrdb exists
 	xrdb -merge ~/.Xresources 
 fi
-
 
 vundle_path=vim/bundle/Vundle.vim
 if [ ! -d "$vundle_path" ];then
