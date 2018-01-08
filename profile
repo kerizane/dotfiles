@@ -25,10 +25,10 @@ alias nr="sudo nginx -s reload"
 alias nt="sudo nginx -t"
 
 if [ $is_arch ]; then
-alias off='shutdown now'
-alias sleep='systemctl hybrid-sleep'
-alias pacup='sudo pacman -Syu'
-alias pacin='sudo pacman -Su'
+	alias off='shutdown now'
+	alias sleep='systemctl hybrid-sleep'
+	alias pacup='sudo pacman -Syu'
+	alias pacin='sudo pacman -Su'
 fi
 
 #Functions
