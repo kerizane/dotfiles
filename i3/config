@@ -26,10 +26,10 @@ font pango:monospace 8
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
-set $up l
-set $down k
-set $left j
-set $right semicolon
+set $up k
+set $down j
+set $left h
+set $right l
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
@@ -37,11 +37,10 @@ floating_modifier Mod4
 # start a terminal
 bindsym Mod4+Return exec i3-sensible-terminal
 
-bindsym Mod4+c exec chromium
-bindsym Mod4+p exec pcmanfm
-bindsym Mod4+p+shift exec sudo pcmanfm
-bindsym Mod4+z exec zathura
-bindsym Mod4+y exec skype
+bindsym Mod4+c exec firefox
+bindsym Mod4+p exec thunar
+bindsym Mod4+o exec i3lock
+bindsym Mod4+m exec robomongo
 
 
 # kill focused window
@@ -186,3 +185,4 @@ bar {
 #######################################################################
 exec i3-config-wizard
 
+exec  xrandr --output DP2 --auto --left-of DP1

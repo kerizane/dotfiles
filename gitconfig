@@ -2,6 +2,7 @@
 	default = simple
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore
 [alias]
 	br = branch
 	c = commit
@@ -17,7 +18,8 @@
 	s = status
 	su = push --set-upstream origin
 	u = push
+	meld = difftool --dir-diff
 
 [user]
-	email = keri.z.volans@accenture.com
+	email = keri.volans@playtech.com
 	name = Keri Volans
