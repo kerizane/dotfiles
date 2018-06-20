@@ -57,6 +57,7 @@ alias ga='git add'
 alias gaa='git add .'
 alias gaaa='git add --all'
 alias gau='git add --update'
+alias gauc='git add --update; git commit'
 
 alias gb='git branch'
 alias gbd='git branch --delete '
@@ -87,6 +88,7 @@ alias glg='git log --graph --oneline --decorate --all'
 alias gm='git merge'
 alias gma='git merge --abort'
 alias gmc='git merge --continue'
+alias gmi='git-merge-into'
 
 alias gp='git pull'
 alias gpr='git pull --rebase'
@@ -117,6 +119,12 @@ if [ $is_arch ]; then
 	alias pacin='sudo pacman -Su'
 fi
 
+alias mtc='python $PROJ_HOME/sportsbook/apps/util_scripts/template_scripts/read_tmpls.py -i $PROJ_HOME/feeds/lib/libfeeds/static/betradaruo/templates.json -u sportsbook_ci/sportsbook_ci@gnldb2 -x'
+alias mtf='python $PROJ_HOME/sportsbook/apps/util_scripts/template_scripts/read_tmpls.py -i $PROJ_HOME/feeds/lib/libfeeds/static/betradaruo/templates.json -u sportsbook_ft/sportsbook_ft@gnldb2 -x'
+
+alias timc='timplus sportsbook_ci/sportsbook_ci@gnldb2'
+alias timf='timplus sportsbook_ft/sportsbook_ft@gnldb2'
+
 function gfind() {
 	grep -rnw . -e "$1"
 }
@@ -124,6 +132,14 @@ function gfind() {
 function _update_ps1() {
     PS1="$(powerline-shell $?)"
 }
+
+function git-merge-into(){
+	git checkout $1
+	git pull
+	git merge -
+}
+
+
 
 test -f /space/git/git/contrib/completion/git-completion.bash && . $_
 
