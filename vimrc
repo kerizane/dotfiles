@@ -79,6 +79,8 @@ let mapleader=" "
 
 let g:pymode_lint = 0
 
+" set clipboard+=unnamedplus " doesn't work
+"
 set autoindent " set auto-indenting on for programming
 set autoread
 set background=dark " Use colours that work well on a dark background (Console is usually black)
@@ -301,6 +303,16 @@ map <Leader>j `
 let g:ropevim_autoimport_modules = ["os", "os.*", "dataclasses.*", "typing.*", "contextlib.*"]
 let g:ropevim_guess_project = 1
 
-" autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' |  clip.exe')
+autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' |  clip.exe')
 
 let g:netrw_fastbrowse=0
+
+" if has('nvim')
+" endif
+"
+if has ('nvim')
+
+else
+	dslasd
+
+endif
