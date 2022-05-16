@@ -1,129 +1,120 @@
 " ~/.vim/ftplugin/python.vim
 
-set nocompatible              " be iMproved, required
+if has ('nvim')
+else
+	source ~/dotfiles/vimonly.vim
+endif
 
 filetype plugin indent on
-syntax on
-"syntax enable
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'janko-m/vim-test'
-" " Plug 'alfredodeza/pytest.vim' " alt to vim-test?
-" Plug 'tmhedberg/simpylfold' " too slow!
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'jessekelighine/vindent.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'wellle/targets.vim'
-Plug 'bkad/CamelCaseMotion'
-Plug 'tommcdo/vim-exchange'
-Plug 'vim-scripts/python_match.vim'
-Plug 'tpope/vim-rsi'
-Plug 'ap/vim-buftabline'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter'
 
 " Plug 'AndrewRadev/switch.vim' " could be cool, dunno what it does
-" Plug 'tpope/vim-sleuth' " Not worth overcomplicating things
-
 " Plug 'Shougo/deoplete.nvim'
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'klen/python-mode'
-" Plug 'nvie/vim-flake8'
-" Plug 'roxma/nvim-yarp'
-Plug 'python-rope/ropevim'
-" Plug 'roxma/vim-hug-neovim-rpc'
-" Plug 'shougo/neocomplete.vim'
-" Plug 'zchee/deoplete-jedi'
 " Plug 'Shougo/neosnippet-snippets'
-" Plug 'vim-airline/vim-airline'
-Plug 'vim-scripts/taglist.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'bps/vim-textobj-python'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'alfredodeza/pytest.vim' " alt to vim-test?
+" Plug 'ambv/black'
 " Plug 'christoomey/vim-tmux-navigator'
 " Plug 'ctrlpvim/ctrlp.vim' " fzf is better
-Plug 'google/vim-maktaba'
-Plug 'google/vim-coverage'
+" Plug 'janko-m/vim-test'
+" Plug 'klen/python-mode'
 " Plug 'mgedmin/coverage-highlight.vim'
-Plug 'davidhalter/jedi-vim' " completions
-Plug 'dense-analysis/ale'
-Plug 'jnurmine/Zenburn'
-Plug 'justinmk/vim-sneak'
-Plug 'nelstrom/vim-visual-star-search'
+" Plug 'nvie/vim-flake8'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 " Plug 'rstacruz/sparkup'
 " Plug 'scrooloose/syntastic' " was used
 " Plug 'sheerun/vim-polyglot'
+" Plug 'shougo/neocomplete.vim'
 " Plug 'shougo/neosnippet.vim'
 " Plug 'tmhedberg/SimpylFold'
 " Plug 'tmhedberg/matchit'
+" Plug 'tmhedberg/simpylfold' " too slow!
+" Plug 'tpope/vim-sleuth' " Not worth overcomplicating things
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-scripts/DeleteTrailingWhitespace'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-scripts/repeatable-motions.vim'
+" Plug 'vim-scripts/vim-json-bundle'
+" Plug 'zchee/deoplete-jedi'
+
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ap/vim-buftabline'
+Plug 'bkad/CamelCaseMotion'
+Plug 'bps/vim-textobj-python'
+Plug 'davidhalter/jedi-vim' " completions
+Plug 'dense-analysis/ale'
+Plug 'google/vim-coverage'
+Plug 'google/vim-maktaba'
+Plug 'jessekelighine/vindent.vim'
+Plug 'jnurmine/Zenburn'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'kana/vim-textobj-user'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'python-rope/ropevim'
+Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch' " Vim sugar for UNIX shell commands
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-repeat' " Allows supported plugin commands to be repeated
+Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired' " Various keybindings
 Plug 'tpope/vim-vinegar' " netre enhancements
-" Plug 'vim-scripts/repeatable-motions.vim'
-" Plug 'vim-scripts/indentpython.vim'
-" Plug 'vim-scripts/vim-json-bundle'
-" Plug 'vim-scripts/DeleteTrailingWhitespace'
-" Plug 'ambv/black'
+Plug 'vim-scripts/python_match.vim'
+Plug 'vim-scripts/taglist.vim'
+Plug 'wellle/targets.vim'
 
 call plug#end()
 
+let g:ale_enabled=0
+
 let mapleader=" "
 
-let g:pymode_lint = 0
-
 " set clipboard+=unnamedplus " doesn't work
-"
-set autoindent " set auto-indenting on for programming
-set autoread
-set background=dark " Use colours that work well on a dark background (Console is usually black)
-set backspace=indent,eol,start " make that backspace key work the way it should
+
+" set statusline+=%{syntasticstatuslineflag()}
+
 set clipboard=unnamed " set clipboard to unnamed to access the system clipboard under windows
-set completeopt=longest
+set completeopt=longest,menuone,preview
 set cursorline
-set hidden
-set hlsearch
-set incsearch
-set laststatus=2 " make the last line where the status is two lines deep so you can see status always
 set lazyredraw
+set nofoldenable
+set nostartofline
 set number
-set omnifunc=syntaxcomplete#Complete
-set ruler " show the cursor position all the time
-set shell=zsh
-set shortmess+=I
+set omnifunc=syntaxcomplete#complete
+set shell=bash
+set shortmess+=Ii
 set showmatch " automatically show matching brackets. works like it does in bbedit.
 set showmode " show the current mode
-set tags=./tags,tags;$HOME
-set ttyfast
-set undodir=~/.vim/_undo/
-set undofile
-set wildmode=longest,list
-
-"" " Show EOL type and last modified timestamp, right after the filename
-"" set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
-
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set tags=./tags,tags;$home
+" set undofile " need this? " broken
+set wildmode=longest,list
+setlocal foldmethod=indent
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_check_on_save = 0
-" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+set autoindent noexpandtab tabstop=4 shiftwidth=4 fileformat=unix
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:jedi#rename_command = "" " Need this to allow ropevim to work
+let g:netrw_fastbrowse=0
+let g:ropevim_autoimport_modules = ["os", "os.*", "dataclasses.*", "typing.*", "contextlib.*"]
+let g:ropevim_guess_project = 1
 
 if has("autocmd")
-	"Set UTF-8 as the default encoding for commit messages
+	"set utf-8 as the default encoding for commit messages
 	autocmd BufReadPre COMMIT_EDITMSG,git-rebase-todo setlocal fileencodings=utf-8
 
 	"Remember the positions in files with some git-specific exceptions"
@@ -202,36 +193,30 @@ endfunction
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 hi link Repeat Statement
 
-map <C-PageUp> :bp<cr>
-map <C-PageDown> :bn<cr>
-nnoremap <Leader>bd :bd<CR>
-nnoremap <Leader>l :SyntasticCheck<CR>
-nnoremap <Leader>L :SyntasticReset<CR>
-nnoremap <Leader>t :! nosetests<CR>
-nnoremap <Leader>h :noh<CR>
 nnoremap gk :tjump<CR>
 nnoremap gj <C-t>
-nnoremap <Leader>k :YcmCompleter GoToReferences<CR>
-nnoremap <Leader>vs :source ~/.vimrc<CR>
-nnoremap <Leader>ve :e ~/.vimrc<CR>
-nnoremap <Leader>nn :set nonumber<CR>
+map <C-PageUp> :bp<cr>
+map <C-PageDown> :bn<cr>
 
-nnoremap <Leader>gb :Git blame<CR>
-nnoremap <Leader>ge :Gedit<CR>
 imap jk <Esc>
-
+nnoremap <Leader>aI :RopeGenerateAutoimportCache<CR>
 nnoremap <Leader>ac :CoverageToggle!<CR>
 nnoremap <Leader>af :ALEFix<CR>
-nnoremap <Leader>al :ALEToggle<CR>
-
 nnoremap <Leader>ai :RopeAutoImport<CR>
-nnoremap <Leader>aI :RopeGenerateAutoimportCache<CR>
-
-nnoremap <Leader>f :GFiles<CR>
-
-" vmap gs y'>p:'[,']-1s/$/+/\|'[,']+1j!<CR>'[0"wy$:.s§.*§\=w§<CR>'[yyP:.s/./=/g<CR>_j
-"
-
+nnoremap <Leader>al :ALEToggle<CR>
+nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>h :noh<CR>
+nnoremap <Leader>k :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>nn :set nonumber<CR>
+nnoremap <Leader>t :! nosetests<CR>
+nnoremap <Leader>ve :e ~/.vimrc<CR>
+nnoremap <Leader>vp :e ~/.profile<CR>
+nnoremap <Leader>vs :source ~/.vimrc<CR>
+map <Leader>r <C-c>r
+map <Leader>j `
 
 
 com! XMLLint :%!xmllint --format --recover - 2>/dev/null
@@ -239,11 +224,6 @@ com! XMLSort :%!python ~/dotfiles/python/sort_time.py
 
 com! ReorderJSON :%!python -m json.tool
 com! FormatJSON :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=4)"
-
-se nostartofline
-setlocal foldmethod=indent
-set nofoldenable
-
 
 au BufNewFile,BufRead *.py,*.proto
 	\ highlight BadWhitespace ctermbg=red guibg=darkred |
@@ -276,12 +256,6 @@ au BufNewFile,BufRead *.py,*.proto
 
 	
 " tabs
-set autoindent noexpandtab tabstop=4 shiftwidth=4 fileformat=unix
-
-" let g:jedi#force_py_version = 3.7
-
-" jump to next git conflict market
-" map <silent> <F8> /^\(<\{7\}\\|>\{7\}\\|=\{7\}\\|\|\{7\}\)\( \\|$\)<cr>
 
 python3 << EOF
 import os
@@ -296,23 +270,10 @@ if "VIRTUAL_ENV" in os.environ:
     os.environ.update(env)
 EOF
 
-let g:jedi#rename_command = ""
-map <Leader>r <C-c>r
-map <Leader>j `
-
-let g:ropevim_autoimport_modules = ["os", "os.*", "dataclasses.*", "typing.*", "contextlib.*"]
-let g:ropevim_guess_project = 1
-
 autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' |  clip.exe')
 
-let g:netrw_fastbrowse=0
-
-" if has('nvim')
-" endif
-"
-if has ('nvim')
-
-else
-	dslasd
-
-endif
+" jedi:
+" c space
+" leader d
+" leader n
+" leader g
