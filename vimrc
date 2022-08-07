@@ -9,7 +9,7 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/nvim-treesitter'
 
 " Plug 'AndrewRadev/switch.vim' " could be cool, dunno what it does
@@ -17,7 +17,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'alfredodeza/pytest.vim' " alt to vim-test?
-" Plug 'ambv/black'
+Plug 'ambv/black'
 " Plug 'christoomey/vim-tmux-navigator'
 " Plug 'ctrlpvim/ctrlp.vim' " fzf is better
 " Plug 'janko-m/vim-test'
@@ -34,13 +34,14 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'tmhedberg/SimpylFold'
 " Plug 'tmhedberg/matchit'
 " Plug 'tmhedberg/simpylfold' " too slow!
-" Plug 'tpope/vim-sleuth' " Not worth overcomplicating things
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-scripts/DeleteTrailingWhitespace'
 " Plug 'vim-scripts/indentpython.vim'
 " Plug 'vim-scripts/repeatable-motions.vim'
 " Plug 'vim-scripts/vim-json-bundle'
 " Plug 'zchee/deoplete-jedi'
+
+Plug 'davidhalter/jedi-vim' " completions
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -49,7 +50,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'ap/vim-buftabline'
 Plug 'bkad/CamelCaseMotion'
 Plug 'bps/vim-textobj-python'
-Plug 'davidhalter/jedi-vim' " completions
 Plug 'dense-analysis/ale'
 Plug 'google/vim-coverage'
 Plug 'google/vim-maktaba'
@@ -76,6 +76,7 @@ Plug 'vim-scripts/python_match.vim'
 Plug 'vim-scripts/taglist.vim'
 Plug 'wellle/targets.vim'
 
+" Plug 'tpope/vim-sleuth'
 call plug#end()
 
 let g:ale_enabled=0
@@ -85,6 +86,7 @@ let mapleader=" "
 " set clipboard+=unnamedplus " doesn't work
 
 " set statusline+=%{syntasticstatuslineflag()}
+
 
 set clipboard=unnamed " set clipboard to unnamed to access the system clipboard under windows
 set completeopt=longest,menuone,preview
@@ -101,11 +103,12 @@ set showmode " show the current mode
 set statusline+=%#warningmsg#
 set statusline+=%*
 set tags=./tags,tags;$home
-" set undofile " need this? " broken
+set undodir=~/.vim/undo-dir
+set undofile
 set wildmode=longest,list
-setlocal foldmethod=indent
+set foldmethod=indent
 
-set autoindent noexpandtab tabstop=4 shiftwidth=4 fileformat=unix
+" set autoindent noexpandtab tabstop=4 shiftwidth=4 fileformat=unix
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:jedi#rename_command = "" " Need this to allow ropevim to work
@@ -114,6 +117,8 @@ let g:ropevim_autoimport_modules = ["os", "os.*", "dataclasses.*", "typing.*", "
 let g:ropevim_guess_project = 1
 
 if has("autocmd")
+	au BufNewFile,BufRead * normal zR
+
 	"set utf-8 as the default encoding for commit messages
 	autocmd BufReadPre COMMIT_EDITMSG,git-rebase-todo setlocal fileencodings=utf-8
 
@@ -144,7 +149,7 @@ if has("autocmd")
 				\ set shiftwidth=2 |
 				\ set expandtab |
 				\ set autoindent |
-				\ set fileformat=unix 
+				\ set fileformat=unix
 
 	au BufNewFile,BufRead *.json
 				\ set softtabstop=0 |
@@ -157,7 +162,8 @@ if has("autocmd")
 				\ set autoindent |
 				\ set fileformat=unix
 
-	autocmd FileType html, xml setlocal shiftwidth=2 tabstop=2
+	autocmd FileType proto setlocal shiftwidth=2 tabstop=2 expandtab
+	autocmd FileType html,xml setlocal shiftwidth=2 tabstop=2
 	autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,} 
 endif
 
@@ -206,8 +212,10 @@ nnoremap <Leader>ai :RopeAutoImport<CR>
 nnoremap <Leader>al :ALEToggle<CR>
 nnoremap <Leader>bd :bd<CR>
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gb :Git blame -w<CR>
 nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gu :GitGutterUndoHunk<CR>
+nnoremap <Leader>gp :GitGutterPreviewHunk<CR>
 nnoremap <Leader>h :noh<CR>
 nnoremap <Leader>k :YcmCompleter GoToReferences<CR>
 nnoremap <Leader>nn :set nonumber<CR>
@@ -215,9 +223,19 @@ nnoremap <Leader>t :! nosetests<CR>
 nnoremap <Leader>ve :e ~/.vimrc<CR>
 nnoremap <Leader>vp :e ~/.profile<CR>
 nnoremap <Leader>vs :source ~/.vimrc<CR>
+nnoremap <Leader>pt :call UseTabs()<CR>
+nnoremap <Leader>ps :call UseSpaces()<CR>
 map <Leader>r <C-c>r
 map <Leader>j `
 
+command WQ wq
+command Wq wq
+command W w
+command Q q
+command WQa wqa
+command Wqa wqa
+command Wa wa
+command Qa qa
 
 com! XMLLint :%!xmllint --format --recover - 2>/dev/null
 com! XMLSort :%!python ~/dotfiles/python/sort_time.py
@@ -227,8 +245,9 @@ com! FormatJSON :%!python -c "import json, sys, collections; print json.dumps(js
 
 au BufNewFile,BufRead *.py,*.proto
 	\ highlight BadWhitespace ctermbg=red guibg=darkred |
-	\ set foldenable |
-	\ normal zR
+	\ set foldenable 
+
+
 
 " au BufNewFile,BufRead *.py
 " 	\ highlight BadWhitespace ctermbg=red guibg=darkred |
@@ -254,8 +273,26 @@ au BufNewFile,BufRead *.py,*.proto
 " 	\ set textwidth=200 |
 " 	\ set fileformat=unix
 
+function! UseTabs()
+  set tabstop=4     " Size of a hard tabstop (ts).
+  set shiftwidth=4  " Size of an indentation (sw).
+  set noexpandtab   " Always uses tabs instead of space characters (noet).
+  set autoindent    " Copy indent from current line when starting a new line (ai).
+  set foldlevel=99
+endfunction
+
+function! UseSpaces()
+  set tabstop=4     " Size of a hard tabstop (ts).
+  set shiftwidth=4  " Size of an indentation (sw).
+  set expandtab     " Always uses spaces instead of tab characters (et).
+  set softtabstop=4 " Number of spaces a <Tab> counts for. When 0, featuer is off (sts).
+  set autoindent    " Copy indent from current line when starting a new line.
+  set smarttab      " Inserts blanks on a <Tab> key (as per sw, ts and sts).
+  set foldlevel=99
+endfunction
 	
-" tabs
+
+" au BufNewFile,BufRead *.py call UseSpaces()
 
 python3 << EOF
 import os
@@ -277,3 +314,7 @@ autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents,
 " leader d
 " leader n
 " leader g
+
+set path+=~/git/proj-multiop/sportsbook/apps/admin/html
+let g:jedi#popup_on_dot = 0
+
